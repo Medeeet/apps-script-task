@@ -1,38 +1,41 @@
-# Google Sheets Integration with Website — Project by Medet
+# Google Sheets Integration — Project by Medet
 
-**Flow:** Google Sheets → Apps Script (Web App) → Frontend (`index.html`).
+This project demonstrates integration of **Google Sheets → Apps Script (Web App) → Frontend**.
 
 ## Repository Structure
-- `apps-script/`        — Google Apps Script code (.gs)
-- `frontend/index.html` — frontend page to display the table
-- `deploy-info.txt`     — Web App URL and deployment instructions
+- `apps-script/Code.gs` — Google Apps Script backend code
+- `frontend/index.html` — web page to display table data
+- `deploy-info.txt` — Web App URL and deployment instructions
 
-## Run Frontend Locally
-1. Open terminal inside the `frontend` folder.
-2. Start a local server:
+## How to Run (Frontend)
+1. Open terminal in the `frontend` folder.
+2. Start local server:
    ```bash
    python3 -m http.server 8000
 
-    Open in browser:
-    http://localhost:8000
+    Open http://localhost:8000/index.html
 
-Web App (Apps Script)
+    in your browser.
+
+## Web App (Apps Script)
 
     Web App URL:
     https://script.google.com/macros/s/AKfycbx97TeFo9dW5ftHI8ofezKoFDpxri4aBU8GgfKH1u-VhWfDKauU8rMHe1691LsXrQfO6A/exec
 
-    Deployment steps:
-    Extensions → Apps Script → Deploy → New deployment → Web app
+    Deployment:
+
+        Open Apps Script Editor → Deploy → New deployment → Web app.
 
         Execute as: Me
 
         Who has access: Anyone
 
-What to Test
+## What to Test
 
-    Open index.html → a table with the column Стоимость (₸) should appear.
+    Open index.html → should display a table with the Стоимость (₸) column.
 
-    Change Price or Weight in Google Sheets → refresh the page → updated values should be reflected automatically.
+    Change a value in Google Sheet (price/weight) → refresh the page → values update automatically.
 
 Author: Medet
-Contact: awusincere@gmail.com
+Email: awusincere@gmail.com
+Telegram: @awulanba
