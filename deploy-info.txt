@@ -1,28 +1,28 @@
-# Deployment instructions
+Deployment instructions
 
-## Google Apps Script (backend)
+Google Apps Script (backend)
 1. Open Google Sheets → Extensions → Apps Script.
 2. Create a new project or open the existing one linked to your Sheet.
 3. Replace the default "Code.gs" content with the code from `apps-script/Code.gs` in this repository.
 4. Save the project.
 
-## Deploy as Web App
+Deploy as Web App
 1. In Apps Script: click Deploy → New deployment.
 2. Select "Web app".
 3. Execute as: Me
 4. Who has access: Anyone
 5. Deploy → Copy the Web App URL.
 
-## Web App URL (current deployment)
+Web App URL (current deployment)
 https://script.google.com/macros/s/AKfycbx97TeFo9dW5ftHI8ofezKoFDpxri4aBU8GgfKH1u-VhWfDKauU8rMHe1691LsXrQfO6A/exec
 
-## Frontend (local run)
+Frontend (local run)
 1. Open terminal in `frontend/` folder.
 2. Run:
    python3 -m http.server 8000
 3. Open in browser:
    http://localhost:8000/index.html
 
-## What to test
+What to test
 - Open `index.html` → the table from Google Sheets is displayed.
 - Change values in Google Sheets (e.g., weight or price) → refresh the page → data updates automatically.
