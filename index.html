@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Товары из Google Sheets (JSONP)</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;padding:20px}
+    table{border-collapse:collapse;width:100%;max-width:800px}
+    th,td{border:1px solid #aaa;padding:8px;text-align:left}
+    #status{margin-bottom:10px}
+  </style>
+</head>
+<body>
+  <h2>Товары из Google Sheets</h2>
+  <div id="status">Загрузка...</div>
+  <table id="tbl" style="display:none;">
+    <thead id="thead"></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <script>
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx97TeFo9dW5ftHI8ofezKoFDpxri4aBU8GgfKH1u-VhWfDKauU8rMHe1691LsXrQfO6A/exec';
+    let lastScript = null;
+
+    function handleSheetsData(json) {
+      try {
+        if (!json || !json.success) {
+          document.getElementById('status').innerText = 'Ошибка (данные): ' + (json && json.error ? json.error : 'нет данных');
+          return;
+        }
+        render(json.data);
+        document.getElementById('status').innerText = 'Готово (последнее обновление: ' + new Date().toLocaleTimeString() + ')';
+      } catch (err) {
+        document.getElementById('status').innerText = 'Ошибка обработки: ' + err.message;
+      }
+    }
+
+    function render(items) {
+      if (!items || items.length === 0) {
+        document.getElementById('status').innerText = 'Нет данных';
+        return;
+      }
+      document.getElementById('tbl').style.display = '';
+      const headers = Object.keys(items[0]);
+      document.getElementById('thead').innerHTML = '<tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
+      document.getElementById('tbody').innerHTML = items.map(row =>
+        '<tr>' + headers.map(h => `<td>${row[h] ?? ''}</td>`).join('') + '</tr>'
+      ).join('');
+    }
+
+    function loadViaJsonp() {
+      document.getElementById('status').innerText = 'Загружаю...';
+      if (lastScript && lastScript.parentNode) lastScript.parentNode.removeChild(lastScript);
+      const script = document.createElement('script');
+      script.src = WEB_APP_URL + '?callback=handleSheetsData&_=' + Date.now();
+      script.async = true;
+      document.body.appendChild(script);
+      lastScript = script;
+    }
+
+    loadViaJsonp();
+    setInterval(loadViaJsonp, 30000);
+  </script>
+</body>
+</html>
