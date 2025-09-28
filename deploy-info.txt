@@ -1,0 +1,18 @@
+Google Apps Script Web App — Deploy Info
+---------------------------------------
+
+Web App URL:
+https://script.google.com/macros/s/AKfycbx97TeFo9dW5ftHI8ofezKoFDpxri4aBU8GgfKH1u-VhWfDKauU8rMHe1691LsXrQfO6A/exec
+
+Deployment settings:
+- Execute as: Me (Medet)
+- Who has access: Anyone with the link
+
+Как открыть:
+1. Перейдите по Web App URL (JSON отдаётся напрямую).
+2. Или откройте frontend/index.html локально через:
+   python3 -m http.server 8000
+   → http://localhost:8000
+
+Примечание:
+Данные берутся из Google Sheets (лист "Лист1").
